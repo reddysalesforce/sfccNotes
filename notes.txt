@@ -1,0 +1,101 @@
+Variation Master: 
+--------
+A product that represents all the variations for a particular product. For example, a specific style of t-shirt.
+Does not have an inventory record.
+
+
+
+variation group
+------------------
+A variation group is a group of product SKUs that shares a common attribute, such as color or size. It always belongs to a master product and represents a group of variation products
+
+variation product
+--------------------
+A product that is a specific variation. For example, if a Vegas brand t-shirt is represented by a variation master, then a product variation is a size 10, blue Vegas brand t-shirt.
+
+Product Set
+---------------
+A product that includes several products that appear together and can be purchased together or separately.
+ For example, an accessories kit that includes a hairbrush, comb, and mirror, each of which can also be bought separately. 
+Another common example is an outfit, with a jacket, shirt, and pants, which can be purchased together or each item can be purchased separately.
+
+--The set doesn't have an inventory record, but all the products in the set have their own inventory records
+A product set has one price for the product set and separate prices for each of the products in the set. The product set price is always the sum of the product prices that make up the set, you can't set a product set price. If any of the individual products have a promotional price, the promotional price is used in the calculation of the product set price.
+
+
+Product Bundle
+---------
+A product that includes several products that are only sold together. For example, a gaming bundle that includes a video game console and several games.
+The product bundle has an inventory record and all products in the bundle have inventory records
+One price for the bundle. Individual products within the bundle don't have prices.
+A product bundle depends on its availability status to determine whether it appears in search results.
+
+Product Options
+-------------
+Salesforce B2C Commerce, product options enable you to sell configurable products that have optional accessories, upgrades, or additional services. 
+Options are always purchased with a product and can't be purchased separately
+They have their own price and display name, but do not have their own thumbnail images
+They can't be searched by the customer, but are usually visible on the product detail page
+ex: warranty
+
+-------
+
+catalog
+--------------------------------------------------------------------------------------------------------------
+A catalog is a collection of categories, products, and images.
+
+types
+-----
+It is best practice to create two catalogs: the standard catalog and the storefront catalog.
+--
+The standard catalog provides the same structure as an external system of record for your products. 
+This catalog isn't assigned to a site. It owns the products you want to edit and mirrors the organization of your inventory, fulfillment, or product management systems.
+---
+The storefront catalog is where you create categories that display on your storefront. Products must be assigned to storefront categories to display on the storefront. 
+**A storefront has one catalog: the storefront catalog.
+
+
+pricing and price books
+--------------------------
+Price books are the way you define prices for products
+A price book contains price definitions for a group of products, based on a currency.
+Each product in the price book can have multiple price tables in which you define prices for varying quantities, where only one price table is active at any given time
+Price books are defined for an entire organization rather than a specific storefront site
+For a Price Book to be effective in the storefront, it must be assigned to a site
+You can assign one or more price books to a storefront, but only one price book can be active at a time
+You can assign a price book to one or more storefronts in an organization
+
+Slicing
+-------
+●	The default slicing rule is used to determine whether the variation product appears as a single search result with a single image or is sliced and appears with a search result for each variation product with its own image.
+●	 If the product isn't sliced, the product master image is used. If a product is sliced, then the online variation products are each shown separately
+*** it is mainly used to show images
+if we want to show separate image for each variation product then slicing is required
+
+Refinement Inheritance
+--------------------------------------------
+Refinement definitions are inherited by subcategories by default,
+but they can be blocked in the subcategory search
+refinement configuration, so they don't
+appear in the storefront.
+
+FE decorator:
+--------
+<isdecorate template="common/layout/page">
+<isdecorate template="common/layout/checkout">
+
+content asset:
+-------------
+<iscontentasset aid="storepage-carousel-1" />
+
+
+custom isml tags:
+---------------
+using ismodule
+ex: iscontentasset
+<ismodule template="/components/content/contentAsset"
+    name="contentasset"
+    attribute="aid"
+/>
+
+
