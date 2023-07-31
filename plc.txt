@@ -1,0 +1,37 @@
+Cartridge Path Substitution
+The cartridge path controls file lookup for your site and defines what code runs. B2C Commerce searches the cartridge from left to right when a specific controller, script, model, or ISML template is called via URL or code.
+
+You can substitute the cartridge path file lookup with the require() function in these situations.
+
+Relative to the current file: require('./shipping') or require('../../util')
+Relative to the current cartridge: require ('~/cartridge/scripts/cart')
+From the beginning of the cartridge path: require('*/cartridge/scripts/util/array')
+Specific B2C Commerce API: require('dw/catalog/CatalogMgr')
+Specific module or cartridge: require('server')
+
+
+video:controller : https://share.vidyard.com/watch/TFjkeSxUKR9Mh1cDSVF4qz?&assignmentId=a5c3m0000022R4nAAE
+
+customize b2c sfra
+------------------
+SFRA comes with an app_storefront_base cartridge and a server module. The base cartridge contains functionality that’s common to most sites. 
+You can layer additional functionality over it with plug-in cartridges, LINK cartridges, and custom code cartridges. 
+B2C Commerce provides plug-in cartridges for wish lists, gift registries, Apple Pay, and product comparison, as well as middleware capability. 
+LINK partners, such as PayPal and Bazaarvoice, provide LINK cartridges. So there’s all kinds of apps to choose from.
+
+**This means that you don’t edit or rename the app_storefront_base cartridge and the other plugins, such as plugin_applepay. It also means that you need to keep your version of the app_storefront_base cartridge and other plugins up to date to get all the changes.
+
+
+***Keep in mind that the base cartridge and module are not intended to be customized
+--Because SFRA is backward compatible between point releases (except when required for urgent security fixes), you can just download a new version and run automated tests. No more searching for code changes so you can port it to the customized code.
+
+!!!!High imp
+-------
+Each site must have at least one custom cartridge. If you want to create multiple sites, we suggest you create multiple custom cartridges that separate functionality specific to a brand or locale. This lets you reuse most of the cartridge stack for a new site or microsite.
+
+video:common js modules:https://share.vidyard.com/watch/m18bnPSa3TefW6K2mVqytf?&assignmentId=a5c3m0000022R4rAAE
+
+
+
+
+

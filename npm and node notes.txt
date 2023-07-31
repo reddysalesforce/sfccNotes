@@ -1,0 +1,25 @@
+npm install <pkg-name> - locally installs inside node_modules folder
+npm install -g <pkg_name> - not shows install current project directory node_modules folder
+npm install -g nodemon - globally installs whenever file content changes, automataically executes file
+nodemon demo.js -no need to run again and again
+with node demo.js - everytime we have to run
+
+
+Which statement is true regarding third-party command line interface packages? They will be installed with the -g flag.
+
+web frameworks for node
+------------------
+Express - tried and tested
+sails -feature rich
+koa-most modern
+
+express.js - for backend from long time, more documentation
+
+What makes Socket.io different from a standard web server?It offers bidirectional communication
+Which Node web framework offers an ORM subframework?Sails
+
+npm init --yes - creates package.json
+to save express.js like third-party, we need package.json
+
+npm install -s express
+

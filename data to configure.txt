@@ -1,0 +1,18 @@
+required data to be configured in BM
+
+1.products
+2.product price
+3.inventory
+4.search
+5.online marketing
+6.sorting rules
+7.shipping method
+8.payment methods
+9.tax
+10.content
+
+
+after importing new site zip if navigation missing then
+rebuild search index
+merchant tools > search > search indexes
+
