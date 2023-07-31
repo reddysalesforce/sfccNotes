@@ -1,0 +1,56 @@
+1) New
+2,) Open
+3) Created
+4) Cancelled
+5) Failed
+6) Replace
+
+created - inventory locked
+payment success -place order api
+
+order -new (when payment done)
+in bm - open order
+
+payment failed - payment fail
+when order is new we can cancel them -  
+
+cancelled - new orders can be cancelled
+failed - 
+completed - 
+
+replace -after edit an order 
+old order - linked with replaced status
+
+once payment done - order fail can't be done
+cancellation - if payment is done and order is in open
+fail - if payment not done
+
+undo failed order -> create order
+create order -> placed
+
+
+ipay88.js
+
+undofailorder - placeorder
+
+new,open and completed
+
+
+authorize and capture
+--------------------
+authorize - reserving amount
+
+authorize and capture - cybersource
+capture - paying to amount
+
+place order -> authorize -> capture
+CheckoutServices.js
+
+handle - hook for redirection
+
+paydollar.js -> handle and authorize
+
+
+CheckoutServices.js -everything in it
+ipay88.js
+
