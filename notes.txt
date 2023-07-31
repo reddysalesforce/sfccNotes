@@ -98,4 +98,207 @@ ex: iscontentasset
     attribute="aid"
 />
 
+MVC Model
+---------
+When describing a Demandware application using the Model‐View‐Controller (MVC) pattern,
+templates represent the view, pipelines represent the controller and the DW Script API represents the
+model.
+
+
+-Use ISML tags in templates, including: <isset>, <isinclude>, <isdecorate>, and conditional
+tags.
+-Use local and remote includes in ISML.
+
+
+<isinclude> Includes the contents of one template on the current template
+<ismodule> Declares a custom tag
+<iscomponent> Includes the output of a pipeline on the current page
+<isscript> Allows Demandware Script execution inside templates
+<isset> Creates a variable
+<isinclude> Includes the contents of one template on the current template
+<isprint> Formats and encodes strings for output
+<isslot> Creates a content slot
+<isdecorate> Reuses a template for page layout
+<isreplace> Replaces content inside a decorator template
+
+ISML expressions can also access Demandware Script classes and methods. Two packages are available
+implicitly in ISML, so classes do not need to be fully qualified:
+1. TopLevel package: session.getCustomer()
+2. dw.web package: URLUtils.url(), URLUtils.webRoot()
+TopLevel package has a class named global which is also implied so it never has to occur in
+the prefix.
+
+Here are some more examples of ISML expressions:
+${TopLevel.global.session.getCustomer().getProfile().getLastName()}
+
+Since TopLevel package and global class is implicit, the above code is equivalent to code below.
+${session.getCustomer().getProfile().getLastName()}
+
+<isredirect> tag
+---------------------
+<isredirect location="${URLUtils.https('Account-Show')}" permanent="true"/>
+
+isset
+---------
+<isset
+name = "<name>"
+value = "<expression>"
+scope = "session"|"request"|"page"
+>
+
+ex:
+<isset name="sessionVar" value="${1}" scope = "session"/>
+${session.custom.sessionVar}<br/>
+
+
+<isinclude> Enables you to embed an ISML template inside an invoking template. 
+There are two types:
+ Local Include
+------------------- 
+– include the code of one ISML template inside of another
+while generating the page. All variables from the including template are
+available in the included template, including page variables. SiteGenesis uses
+local includes extensively.
+
+ Remote Include
+-------------------
+–include the output of another pipeline inside of an ISML template. 
+This is used primarily for partial page caching. 
+Note: 
+Pipeline dictionary and page variables from invoking template are not available in the included template. 
+The only variables available to a remotely included pipeline are session variables.
+Note: Includes from another server are not supported.
+----------------------
+
+<ismodule> 
+-------------
+Enables you to define your own ISML tags which can be used like any standard
+tags.
+
+<iscomponent> 
+-------------------
+Invokes a remote include. It enables you to pass as many attributes as you want
+without having to use the URLUtils methods.
+
+
+Local Includes
+-----------
+<isinclude template=”[directory/]templatename”/>
+
+Remote Include
+----------------
+<isinclude url="${URLUtils.url('Product-IncludeLastVisited')}" />
+to pass params:
+<isinclude url="${URLUtils.url(‘Pipeline-StartNode’, [‘param’,
+‘value’, …])}"/>
+
+
+---------Content Slots ---------
+ Create content slots for products and images.
+ Use rendering templates with content slots.
+ Configure content slots.
+
+There are three contexts of slots:
+ Global slots can appear on any page.
+ Category slots appear on category‐specific pages since they depend on the category ID.
+ Folder Slots – appear in content library folders dependent on the folder ID.
+
+Global slot example
+<isslot id=”header_banner” description=”…” context=”global”/>
+Category slot example
+<isslot id=”category_top_featured” context=”category” description=”…”
+context-object=”${pdict.ProductSearchResult.category}”/>
+Folder slot example:
+<isslot id="fldr-landing-slotbanner" context="folder" description="Large
+Folder Landing Banner"
+context-object="${pdict.ContentSearchResult.folder}"/>
+
+Content Link Functions
+--------------------
+ $staticlink$ ‐ Creates a static link to an image.
+ $url()$ ‐ Creates an absolute URL that retains the protocol of the outer request.
+ $httpUrl()$ ‐ Creates an absolute URL, with the http protocol.
+ $httpsUrl()$ ‐ Creates an absolute URL, with the https protocol.
+ $include()$ ‐ Makes a remote include call (relevant for caching purposes).
+Here is an example of a function that creates a hyperlink to the Page-Show pipeline passing cid=2-
+day-shipping-popup in the query string:
+href="$url('Page-Show', 'cid', '2-day-shipping-popup')$"
+--------
+<isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addCss('/css/account/dashboard.css');
+        assets.addJs('/js/wishlist.js');
+    </isscript>
+	
+	
+
+difference b/w bind and apply
+event.stopPropagation and event.immediateStopPrapagation
+IIFE - immediate invocation function expression
+
+extending client js and css in sfra
+javascript design patterns
+difference b/n client js and server side js
+difference b/n content asset and content slot
+difference b/n product set and product bundle
+map and reduce
+closure
+isml tags
+local include and remote include
+object prototype
+
+console.log(this) and console.log(this) inside arrow function
+==============================================================================================
+
+FE overriding in sfra
+-----------------------
+var base = require('base/product/base');
+First 'base' refers to the base path (SFRA base cartridge).
+Second refers to the base.js script
+
+Then the new functionality can ovveride the base as follows
+base.updateAvailability = updateAvailability;
+module.exports = base
+
+first base in require refers to
+in package.json
+"paths": {
+	"base" : "../storefront-reference-architecture/cartridges/app_storefront_base"
+	
+}
+
+second base in require refers to 
+app_storefront_base/client/default/js/product/base.js
+
+--------------------------------------------------- 
+
+closure 
+function x() {
+var a = 7;
+function y() {
+console.log(a);
+}
+return y;
+}
+var z = x();
+console.log(z); // value of z is entire code of function y.
+
+A closure is a function that has access to its outer function scope even after the function has returned.
+Meaning, A closure can remember and access variables and arguments reference of its outer function even after
+the function has returned.
+
+
+.What to declare on html head  of responsive view port?
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+favicon
+----------
+
+A favicon is a small image displayed next to the page title in the browser tab
+A favicon image is displayed to the left of the page title in the browser tab, like this:
+<head>
+  <title>My Page Title</title>
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+<body>
 
