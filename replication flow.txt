@@ -1,0 +1,15 @@
+ideal way
+------------
+from staging code and data are replicated to dev and prod.
+
+Developers work and test on dev env only.
+Then data and code are replicated to prod environment.
+
+Builds are built on dev, staging only not on prod. only replication done to prod.
+
+
+data replication - data will be replicated
+code replication - active version and other version we can replicate
+
+in prod, we can undo code and data replicate(NOTE: only last replication can be undone)
+

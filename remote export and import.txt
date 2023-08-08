@@ -1,0 +1,4 @@
+site import and export
+-----------------
+connect to remote - any PIG instance.
+export in that instance and we can import to our sandbox avoiding downloading and uploading
