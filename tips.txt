@@ -1,0 +1,5 @@
+including content asset inside other content asset
+----------------------------
+$include('Page-Include', 'cid', 'contemporaryTab')$
+
+contemporaryTab - is other content asset we are including in our content asset 
